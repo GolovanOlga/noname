@@ -1,1 +1,42 @@
+CALL x  ; последнее значение в стеке является искомым значением  
+          ;факториала
+x:
+mov A, 1 
+mov B, 0 ; mov B,n n-число, факториал которого необходимо найти
+CMP B,0
+JZ m
+JNZ n
+n:
+  CMP B,6
+  JB .loop
+  JAE k
+m:push 1
+hlt
+.loop:
+ mul B
+ DEC B
+push A
+JNZ .loop 
+hlt
+k:JMP start1    	
+x1: DB "ERROR!" 
+       DB 0	
+start1:
+	MOV C, x1  
+	MOV D, 232	
+	CALL y
+y:
+	mov A,0		
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop2:
+	MOV A, [C]	
+	MOV [D], A	
+	INC C
+	INC D  
+	CMP B, [C]	
+	JNZ .loop2	
+        HLT
 
+Ret

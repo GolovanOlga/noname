@@ -1,1 +1,58 @@
+call z
+z:
+	JMP start
+hello: DB "111111111111111111111111111" ; DB "***", где *** - любое 
+                                        ; число
+       DB 0	
+
+start:
+	MOV C, hello    
+	MOV D, 232	
+.loop1:
+add A, 1
+INC C
+CMP B, [C]
+JNZ .loop1
+
+mov C, hello
+CMP A, 25
+JB print
+JA p
+print:			
+        mov A, 0
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop:
+	MOV A, [C]	
+	MOV [D], A	
+	INC C
+	INC D  
+	CMP B, [C]	
+	JNZ .loop
+hlt	
+p:  JMP start1    	
+
+x: DB "ERROR!" 
+       DB 0	
+
+start1:
+	MOV C, x  
+	MOV D, 232	
+	CALL y
+y:
+	mov A,0		
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop2:
+	MOV A, [C]	
+	MOV [D], A	
+	INC C
+	INC D  
+	CMP B, [C]	
+	JNZ .loop2	
+        HLT
+	
+ret	
 

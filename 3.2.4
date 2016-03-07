@@ -1,1 +1,22 @@
-
+JMP start
+x: DB "23/07" 
+       DB 0	
+start:
+	MOV C, x  
+	MOV D, 232	
+	CALL y
+        HLT             
+y:			
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop:
+	MOV A, [C]	
+	MOV [D], A	
+	INC C
+	INC D  
+	CMP B, [C]	
+	JNZ .loop	
+	POP B
+	POP A
+	RET
