@@ -1,1 +1,111 @@
+mov A, 1 
+mov B, 3 ; mov B,n n-число, факториал которого необходимо найти
+CMP B,0
+JZ m
+JNZ n
+n:
+  CMP B,6
+  JB .loop
+  JAE k
+m:
+mov [232], '1'
+hlt
+.loop:
+ mul B
+ DEC B
+push A
+push B ;
+mov C, A 
+mov A, 0 
+mov B, 0 
+mov A,C 
+mov C,0 
+.loop1: 
+mov D,A 
+DIV 10 
+MUL 10 
+SUB D,A  
+mov C,D 
+CMP D,0 
+JA g1 
+PUSH 48
+g1: 
+CMP D,1 
+JA g2 
+PUSH 49 
+JMP g10 
+g2: 
+CMP D,2 
+JA g3 
+PUSH 50 
+JMP g10 
+g3: 
+CMP D,3 
+JA g4  
+PUSH 51 
+JMP g10 
+g4: 
+CMP D,4 
+JA g5 
+PUSH 52 
+JMP g10 
+g5: 
+CMP D,5 
+JA g6 
+PUSH 53 
+JMP g10 
+g6: 
+CMP D,6 
+JA g7 
+PUSH 54 
+JMP g10 
+g7: 
+CMP D,7 
+JA g8 
+PUSH 55 
+JMP g10 
+g8: 
+CMP D,8 
+JA g9 
+PUSH 56 
+JMP g10 
+g9: 
+PUSH 57 
+g10: 
+DIV 10 
+CMP A, 0 
+JNZ .loop1 
+POP A 
+mov D,232 
+mov [D], A
+inc D 
+mov C, 0 
+pop B 
+pop A 
+CMP B,0
+JNZ .loop 
+hlt
+k:JMP start1    	
+
+x1: DB "ERROR!" 
+       DB 0	
+
+start1:
+	MOV C, x1  
+	MOV D, 232	
+	CALL y
+                
+y:
+	mov A,0		
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop2:
+	MOV A, [C]	
+	MOV [D], A	
+	INC C
+	INC D  
+	CMP B, [C]	
+	JNZ .loop2	
+        HLT
 
