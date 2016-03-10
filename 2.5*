@@ -1,1 +1,35 @@
+mov A,25
+mov C,0
+.loop:
+mov D,A
+DIV 10
+MUL 10 
+SUB D,A 
+mov B, 0
+g2:
+CMP D,B 
+JA g1 
+ADD B,48
+PUSH B
+inc C
+JMP g10
+g1:
+INC B
+JMP g2
+JMP g10
+g10:
+DIV 10
+CMP A, 0 
+JNZ .loop 
+mov D,232
+mov B,1
+g4:
+CMP B,C 
+JA g3 
+POP A 
+mov [D], A
+inc D
+inc B
+JMP g4
+g3:
 
