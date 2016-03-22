@@ -1,0 +1,54 @@
+ JMP start1
+hello1: DB "Задать n, x=1, F=1" ;n-число, факториал которого
+                                ;необходимо найти, x меняется от 1 до
+                                ;n, F-значение факториала
+       DB 0	
+start1:
+	MOV C, hello1    
+	MOV D, 232	
+	CALL print
+JMP start2
+hello2: DB "Цикл: пока x<n+1, F=F*x" 
+       DB 0	
+start2:
+	MOV C, hello2    
+	MOV D, 232	
+	CALL print
+JMP start3
+hello3: DB "Если F<256, то x=x+1   " 
+       DB 0	
+start3:
+	MOV C, hello3    
+	MOV D, 232	
+	CALL print
+JMP start4
+hello4: DB "Иначе вывод ERROR!  " 
+       DB 0	
+start4:
+	MOV C, hello4   
+	MOV D, 232	
+	CALL print
+JMP start5
+hello5: DB "Выход из цикла, вывод F" 
+       DB 0	
+start5:
+	MOV C, hello5    
+	MOV D, 232	
+	CALL print
+        HLT             
+
+print:			
+	PUSH A
+	PUSH B
+	MOV B, 0
+.loop:
+	MOV A, [C]	
+	MOV [D], A	
+	INC C
+	INC D  
+	CMP B, [C]	
+	JNZ .loop	
+
+	POP B
+	POP A
+	RET
